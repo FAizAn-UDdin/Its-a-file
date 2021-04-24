@@ -1,0 +1,103 @@
+
+// faizan uddin
+//csb19051
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int weight(int arr2[3][3]){
+	int sum	=0,i,j;
+	for(i=0;i< 3;i++){
+		for(j=0;j< 3;j++){
+			sum+=arr2[i][j];
+		}
+	}
+	// printf("%d",sum );
+	return sum;
+}
+
+
+int  main(){
+
+	int row,col,i,j,k,l,sum=0;
+
+	do{
+	printf("No of column(>3) in matrix-1:");
+	scanf("%d", &col);
+	printf("No of row(>3) in matrix-1:");
+	scanf("%d", &row);
+	if (col!=row)
+		printf("\nInvalid-enter square matrix\n");
+	
+	if(row<=3&&col<=3)
+		printf("\nInvalid-enter  matrix of size greater than 3\n");
+	}while(!((col==row) && (row>3 && col>3)));
+
+	printf("Enter matrix-1 elements:\n");
+	int arr1[row][col];
+	for ( i = 0; i < row; ++i){
+		for (j = 0; j < col; ++j){
+			scanf("%d",&arr1[i][j]);
+		}
+	}
+
+	// printf("The matrix-1 is:\n");
+	// for (i = 0; i < row; ++i){
+	// 	for (j = 0; j < col; ++j){
+	// 		printf("%d ", arr1[i][j]);
+	// 	}
+	// 	printf("\n");
+	// }
+
+	printf("Enter 3x3 matrix\n");
+	int arr2[3][3];
+	for ( i = 0; i < 3; ++i){
+		for (j = 0; j < 3; ++j){
+			scanf("%d",&arr2[i][j]);
+		}
+	}
+
+	// printf("The matrix-2 is:\n");
+	// for (i = 0; i < 3; ++i){
+	// 	for (j = 0; j < 3; ++j){
+	// 		printf("%d ", arr2[i][j]);
+	// 	}
+	// 	printf("\n");
+	// }
+
+	for(i=0; i<row; i++){
+		for(j=0; j<col; j++){
+			for(k=i-1; k<=i+1; k++){
+				for(l=j-1; l<=j+1; l++){
+					if (k>=0 && k<row)
+					{
+						if (l>=0 && l<col)
+						{
+							sum+=arr1[k][l]*arr2[k-(i-1)][l-(j-1)];
+						}
+						
+					}
+					
+
+				}
+			}
+			sum=sum/weight(arr2);
+			arr1[i][j]=sum;
+			sum=0;
+		}
+	}
+
+	printf("The modified matrix-1 is:\n");
+	for (i = 0; i < row; ++i){
+		for (j = 0; j < col; ++j){
+			printf("%d ", arr1[i][j]);
+		}
+		printf("\n");
+	}
+
+return 0;
+
+}
+
+
